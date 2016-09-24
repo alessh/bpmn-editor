@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
-import Event from './Event';
 
-export default class IntermediateEvent extends Bpmn {
+export default class Event extends Bpmn {
 	render() {
 
-		let strokeWidth = this.props.strokeWidth || 1;
+		let strokeWidth = this.props.strokeWidth || 2;
 
 	    let cx = this.props.width / 2,
 	        cy = this.props.height / 2;
 
 		return(
 
-			<Event strokeWidth={strokeWidth} {...this.props} >
-
-				<circle 
+		    <g stroke={this.props.stroke || '#000000'} fill={this.props.fill || '#ffffff'} >
+		        
+		        <circle 
 		        	cx={cx} 
 		        	cy={cy} 
 		        	r={Math.round((this.props.width + this.props.height) / 4 - (this.props.offset || 0))} 
 		        	stroke={this.props.stroke || '#000000'} 
 		        	fill={this.props.fill || '#ffffff'} 
-		        	style={{strokeWidth: 4}}
+		        	style={{strokeWidth: this.props.strokeWidth || 2}}
 		        />
 
-			</Event>
+		        {this.props.children}
+
+		    </g>
 
 		);
 	}

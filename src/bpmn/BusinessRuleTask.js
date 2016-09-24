@@ -11,8 +11,8 @@ export default class BusinessRuleTask extends Bpmn {
 
 		    <g stroke='#000000' fill='#ffffff'>
 		        <rect x={0} y={0} width={100} height={80} rx={10} ry={10} stroke={"#000000"} fill={"#ffffff"} style={{strokeWidth: 1}} ></rect>
-		        <BusinessRuleTaskHeader />
-		        <BusinessRuleTaskMain />
+		        <BusinessRuleTaskHeader stroke={"#000000"} fill={"#ffffff"} />
+		        <BusinessRuleTaskMain stroke={"#000000"} fill={"#ffffff"} />
 		    </g>
 		    
 		);

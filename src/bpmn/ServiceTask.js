@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
 
-import ServiceTaskMarker from './ServiceTaskMarker'
+import Task from './Task';
+import ServiceTaskMarker from './ServiceTaskMarker';
+import ServiceTaskFillMarker from './ServiceTaskFillMarker';
 
 export default class ServiceTask extends Bpmn {
 	render() {
 
+		let abspos1 = {
+	        abspos: {
+	          x: 12,
+	          y: 18
+	        }
+	      }
+
+		let abspos2 = {
+	        abspos: {
+	          x: 17,
+	          y: 22
+	        }
+	      }
+
 		return(
 
-		    <g stroke='#000000' fill='#ffffff'>
-		        <rect x={0} y={0} width={100} height={80} rx={10} ry={10} stroke={"#000000"} fill={"#ffffff"} style={{strokeWidth: 2}} ></rect>
-		        <ServiceTaskMarker />
-		    </g>
+		    <Task {...this.props} >
+		        <ServiceTaskMarker fill={'none'} abspos={abspos1} />
+		        {/*<ServiceTaskFillMarker fill={'white'} />*/}
+		        <ServiceTaskMarker fill={'white'} abspos={abspos2} />
+		    </Task>
 		    
 		);
 	}

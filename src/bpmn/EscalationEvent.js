@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
+import Event from './Event';
 
 export default class EscalationEvent extends Bpmn {
 	constructor(props) {
@@ -19,8 +20,8 @@ export default class EscalationEvent extends Bpmn {
 	render() {
 
  		var path = this.getScaledPath(this.state.rawPath, {
-        xScaleFactor: 10,
-        yScaleFactor: 10,
+        xScaleFactor: 1,
+        yScaleFactor: 1,
         containerWidth: this.props.width,
         containerHeight: this.props.height,
         position: {
@@ -29,15 +30,14 @@ export default class EscalationEvent extends Bpmn {
         }
       });
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+ 		var strokeWidth = 1;
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
+		var fill = this.props.isThrowing ? 'black' : 'none';
 
-		return(super.render(path));
+		return(
+			<Event strokeWidth={strokeWidth} {...this.props} >
+				<Bpmn fill={fill} strokeWidth={strokeWidth} path={path} {...this.props} />
+			</Event>
+		);
 	}
 }

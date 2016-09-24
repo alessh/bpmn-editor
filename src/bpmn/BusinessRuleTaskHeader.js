@@ -21,15 +21,11 @@ export default class BusinessRuleTaskHeader extends Bpmn {
         }
       });
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var fill = this.props.isThrowing ? 'black' : 'white';
+		var stroke = this.props.isThrowing ? 'white' : 'black';
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
-
-		return(super.render(path));
+		return(
+			<Bpmn fill={fill} stroke={stroke} path={path} />
+		);
 	}
 }

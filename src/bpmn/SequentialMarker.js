@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
 
-export default class TextAnnotation extends Bpmn {
+export default class SequentialMarker extends Bpmn {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			rawPath: {
-		      d: 'm {mx}, {my} m 10,0 l -10,0 l 0,{e.y0} l 10,0',
-		      height: 30,
+		      d: 'm{mx},{my} m 0,3 l 10,0 m -10,3 l 10,0 m -10,3 l 10,0',
+		      height: 10,
 		      width: 10,
-		      heightElements: [30],
-		      widthElements: [10]
+		      heightElements: [],
+		      widthElements: []
 		    }
 		}
 	}
@@ -24,16 +24,13 @@ export default class TextAnnotation extends Bpmn {
         containerWidth: this.props.width,
         containerHeight: this.props.height,
         position: {
-          mx: 0.0,
-          my: 0.0
+          mx: ((this.props.width / 2 + (this.props.position ? this.props.position.seq : 0)) / this.props.width),
+          my: (this.props.height - 19) / this.props.height
         }
       });
-
-		var fill = 'none';
-		var stroke = 'black';
 		
 		return(
-			<Bpmn fill={fill} stroke={stroke} path={path} />
+			<Bpmn path={path} {...this.props} />
 		);
 	}
 }

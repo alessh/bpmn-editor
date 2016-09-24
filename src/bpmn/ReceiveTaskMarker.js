@@ -29,15 +29,12 @@ export default class ReceiveTaskMarker extends Bpmn {
           }
         });
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var fill = 'white';
+		var stroke = 'black';
+		var strokeWidth = 1
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
-
-		return(super.render(path));
+		return(
+			<Bpmn fill={fill} stroke={stroke} strokeWidth={strokeWidth} path={path} />
+		);
 	}
 }

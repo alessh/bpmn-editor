@@ -28,22 +28,12 @@ export default class ServiceTaskMarker extends Bpmn {
 
 	render() {
 
- 		var path = this.getScaledPath(this.state.rawPath, {
-        abspos: {
-          x: 12,
-          y: 18
-        }
-      });
+ 		var path = this.getScaledPath(this.state.rawPath, this.props.abspos);
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var strokeWidth = 1;
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
-
-		return(super.render(path));
+		return(
+			<Bpmn strokeWidth={strokeWidth} path={path} {...this.props} />
+		);
 	}
 }

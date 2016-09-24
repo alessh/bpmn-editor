@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
+import Event from './Event';
 
 export default class MessageEvent extends Bpmn {
 	constructor(props) {
@@ -19,8 +20,8 @@ export default class MessageEvent extends Bpmn {
 	render() {
 
  		var path = this.getScaledPath(this.state.rawPath, {
-			xScaleFactor: 10.9,
-			yScaleFactor: 10.9,
+			xScaleFactor: 0.9,
+			yScaleFactor: 0.9,
 			containerWidth: this.props.width,
 			containerHeight: this.props.height,
 			position: {
@@ -29,15 +30,15 @@ export default class MessageEvent extends Bpmn {
 			}
 		});
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var strokeWidth = 1
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
+		var fill = this.props.isThrowing ? 'black' : 'white';
+		var stroke = this.props.isThrowing ? 'white' : 'black';
 
-		return(super.render(path));
+		return(
+			<Event fill={fill} stroke={stroke} {...this.props} >
+				<Bpmn fill={fill} stroke={stroke} path={path} strokeWidth={strokeWidth} {...this.props} />
+			</Event>
+		);
 	}
 }

@@ -81,8 +81,8 @@ export default class BPMN extends Component {
 
 		return (
 			
-		    <g stroke='#000000' fill='#ffffff'>
-		        <path d={path} />
+		    <g stroke={this.props.stroke || '#000000'} fill={this.props.fill || '#ffffff'} >
+		        <path d={this.props.path} style={{strokeWidth: this.props.strokeWidth || 1}}  />
 		    </g>
 
 		);

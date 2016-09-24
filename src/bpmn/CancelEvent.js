@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
+import Event from './Event';
 
 export default class CancelEvent extends Bpmn {
 	constructor(props) {
@@ -30,15 +31,14 @@ export default class CancelEvent extends Bpmn {
         }
       });
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var fill = this.props.isThrowing ? 'black' : 'none';
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
+		var strokeWidth = 1;
 
-		return(super.render(path));
+		return(
+			<Event strokeWidth={strokeWidth} {...this.props} >
+				<Bpmn fill={fill} strokeWidth={strokeWidth} path={path} /> {/*  style={{transform('rotate(45)'}} */}
+			</Event>
+		);
 	}
 }

@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
+import Event from './Event';
 
 export default class TerminateEvent extends Bpmn {
 	render() {
 
+		let strokeWidth = this.props.strokeWidth || 4;
+
+	    let cx = this.props.width / 2,
+	        cy = this.props.height / 2;
+
 		return(
 
-		    <g stroke='#000000' fill='#ffffff'>
-		        <circle cx={15} cy={15} r={15} stroke={"#000000"} fill={"#ffffff"} style={{strokeWidth: 4}} ></circle>
-		    </g>
-		    
+			<Event strokeWidth={strokeWidth} {...this.props} >
+
+				<circle 
+		        	cx={cx} 
+		        	cy={cy} 
+		        	r={Math.round((this.props.width + this.props.height) / 4 - (this.props.offset || 0))} 
+		        	stroke={this.props.stroke || '#ffffff'} 
+		        	fill={this.props.fill || '#000000'} 
+		        	style={{strokeWidth: 2}}
+		        />
+
+			</Event>
+
 		);
 	}
 }

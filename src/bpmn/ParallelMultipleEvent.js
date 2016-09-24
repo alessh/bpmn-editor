@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Bpmn from './BPMN';
+import Event from './Event';
 
 export default class ParallelMultipleEvent extends Bpmn {
 	constructor(props) {
@@ -20,8 +21,8 @@ export default class ParallelMultipleEvent extends Bpmn {
 	render() {
 
  		var path = this.getScaledPath(this.state.rawPath, {
-        xScaleFactor: 10.2,
-        yScaleFactor: 10.2,
+        xScaleFactor: 1.2,
+        yScaleFactor: 1.2,
         containerWidth: this.props.width,
         containerHeight: this.props.height,
         position: {
@@ -30,15 +31,14 @@ export default class ParallelMultipleEvent extends Bpmn {
         }
       });
 
-		var fill = this.propsisThrowing ? 'black' : 'white';
-		var stroke = this.propsisThrowing ? 'white' : 'black';
+		var fill = this.props.isThrowing ? 'black' : 'none';
+		
+		var strokeWidth = 1;
 
-		/*var messagePath = this.drawPath(p, pathData, {
-			strokeWidth: 1,
-			fill: fill,
-			stroke: stroke
-		})*/
-
-		return(super.render(path));
+		return(
+			<Event strokeWidth={strokeWidth} {...this.props} >
+				<Bpmn fill={fill} strokeWidth={strokeWidth} path={path} />
+			</Event>
+		);
 	}
 }
