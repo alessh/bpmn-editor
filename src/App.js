@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import sequenceFlowEnd from './svg/sequenceflow-end.svg';
-import messageFlowEnd from './svg/messageflow-end.svg';
-
 import Event from './bpmn/Event';
 import StartEvent from './bpmn/StartEvent';
 import MessageEvent from './bpmn/MessageEvent';
@@ -53,8 +50,6 @@ import DataStoreReference from './bpmn/DataStoreReference';
 
 import TextAnnotation from './bpmn/TextAnnotation';
 
-SubProcessMarker
-
 import ParticipantMultiplicityMarker from './bpmn/ParticipantMultiplicityMarker';
 import SubProcessMarker from './bpmn/SubProcessMarker';
 import ParallelMarker from './bpmn/ParallelMarker';
@@ -62,6 +57,8 @@ import SequentialMarker from './bpmn/SequentialMarker';
 import CompensationMarker from './bpmn/CompensationMarker';
 import LoopMarker from './bpmn/LoopMarker';
 import AdhocMarker from './bpmn/AdhocMarker';
+
+import Viewport from './svg/Viewport';
 
 class App extends Component {
 
@@ -75,8 +72,8 @@ class App extends Component {
       fontSize: '12px'
     };
     
-    const width = 110;
-    const height = 110;
+    const width = 810;
+    const height = 610;
 
     return (
       <div className="App">
@@ -87,23 +84,22 @@ class App extends Component {
 
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-
-          {/*<svg>
-            <circle cx={50} cy={50} r={10} fill="red" />
-          </svg>*/}
-
-
-          {/*<svg
-            xmlns="http://www.w3.org/svg/2000"
-            viewBox={viewBox}
-            width={size}
-            height={size}
-            fill={fill}>
-            <path d={pathData} />
-            {guidelines}
-          </svg>*/}
-          
         </p>
+
+        <Viewport width={width} height={height} >
+          <Event width={36} height={36} x={250} y={250} />  
+          <StartEvent width={36} height={36} x={390} y={350} />  
+          <MessageEvent width={36} height={36} x={290} y={350} />
+          <SignalEvent width={36} height={36} x={190} y={350} />
+          
+          <Task width={100} height={80} />
+          <ScriptTask width={100} height={80} />
+          <SendTask width={100} height={80} />
+          <ReceiveTask width={100} height={80} />
+
+        </Viewport>
+
+        {/*
 
         <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} >
           <Event width={30} height={30} />
@@ -267,7 +263,8 @@ class App extends Component {
         <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} >
           <AdhocMarker width={30} height={30} />
         </svg>  
-
+        
+        */}
 
 
 

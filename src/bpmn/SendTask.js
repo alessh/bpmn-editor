@@ -10,7 +10,9 @@ export default class SendTask extends Bpmn {
 		return(
 
 		    <Task {...this.props} >
+
 		        <SendTaskMarker />
+		        
 		    </Task>
 		    
 		);
