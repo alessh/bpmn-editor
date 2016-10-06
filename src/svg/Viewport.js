@@ -59,23 +59,40 @@ import CompensationMarker from './../bpmn/CompensationMarker';
 import LoopMarker from './../bpmn/LoopMarker';
 import AdhocMarker from './../bpmn/AdhocMarker';
 
+
+import { Resizable, ResizableBox } from 'react-resizable';
+
 export default class Viewport extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {width: this.props.width, height: this.props.height};
+
+		this.onResize = this.onResize.bind(this);
+	}
+
+	onResize = (event, {element, size}) => {
+    	this.setState({width: size.width, height: size.height});
+  	};
 
 	render() {
 		const style = {
 			background: 'lightgray'
 		}
+
 		return (
+
 			<svg 
 				xmlns="http://www.w3.org/2000/svg" 
-				width={this.props.width} 
-				height={this.props.height} 
-				style={style}
+				width={this.props.width}
+				height={this.props.height}
+				style={style}					
 			>
 				
 				{this.props.children}
 
 			</svg>
+
 		)
 	}
 }

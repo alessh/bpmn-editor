@@ -78,8 +78,8 @@ export default class Event extends Bpmn {
 
 		let strokeWidth = this.props.strokeWidth || 2;
 
-	    let cx = (this.props.width / 2) + this.state.x || 0,
-	        cy = (this.props.height / 2) + this.state.y || 0;
+	    let cx = ((this.props.width + (strokeWidth / 2)) / 2) || 0,
+	        cy = ((this.props.height + (strokeWidth / 2)) / 2) || 0;
 
 		return(
 
@@ -95,7 +95,9 @@ export default class Event extends Bpmn {
 			        	style={{strokeWidth: this.props.strokeWidth || 2}}
 			        />
 
-			        {this.props.children}
+              {this.props.children}
+
+              {this.props.text ? (<text x="0" y={this.props.height + 20} fill="red">{this.props.text}</text>) : (null)}
 
 			    </g>
 			</Draggable>

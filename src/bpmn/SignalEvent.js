@@ -8,7 +8,7 @@ export default class SignalEvent extends Bpmn {
 
 		this.state = {
 			rawPath: {
-		      d: 'M {mx},{my} l {e.x0},{e.y0} l -{e.x1},0 Z',
+		      d: 'm {mx},{my} l {e.x0},{e.y0} l -{e.x1},0 Z',
 		      height: 36,
 		      width: 36,
 		      heightElements: [18],

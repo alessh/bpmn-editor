@@ -60,6 +60,8 @@ import AdhocMarker from './bpmn/AdhocMarker';
 
 import Viewport from './svg/Viewport';
 
+import flow from './flow.json';
+
 class App extends Component {
 
   render() {
@@ -72,10 +74,23 @@ class App extends Component {
       fontSize: '12px'
     };
     
-    const width = 810;
-    const height = 610;
+    const width = 1024;
+    const height = 768;
 
-    return (
+    var self = this;
+
+    var Viewport = <Viewport width={'90%'} height={800} >
+     {
+      //let _this = this;
+      flow.map(function(s) {
+        return self.createElements(s);
+      })
+    }
+    </Viewport>
+
+    return ( Viewport );
+    
+    /*return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -86,18 +101,23 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Viewport width={width} height={height} >
-          <Event width={36} height={36} x={250} y={250} />  
-          <StartEvent width={36} height={36} x={390} y={350} />  
-          <MessageEvent width={36} height={36} x={290} y={350} />
-          <SignalEvent width={36} height={36} x={190} y={350} />
+        {/*<Viewport width={'90%'} height={800} >*/}
+          
+          {/*
+          <Event width={36} height={36} x={250} y={250} text="Início" />  
+          <StartEvent width={36} height={36} x={390} y={350} text="Início" />
+          <MessageEvent width={36} height={36} x={290} y={350} text="Email" />
+          <SignalEvent width={36} height={36} x={190} y={350} text="Notificação" />
           
           <Task width={100} height={80} />
           <ScriptTask width={100} height={80} />
           <SendTask width={100} height={80} />
           <ReceiveTask width={100} height={80} />
+          */}
 
-        </Viewport>
+          {Viewport}
+
+        {/*</Viewport>*/}
 
         {/*
 
@@ -268,9 +288,32 @@ class App extends Component {
 
 
 
-      </div>
-    );
+      /*</div>
+    );*/
   }
+
+  _shapeMap = {
+    'bpmn:process': function (props) {
+      return <StartEvent {...props} />;
+    },
+
+    'bpmn:startEvent': function (props) {
+      return <StartEvent {...props} />;
+    },
+
+    'bpmn:task': function (props) {
+      return <Task {...props} />;
+    },
+
+    'bpmn:endEvent': function (props) {
+      return <EndEvent {...props} />;
+    }
+  }
+
+  createElements(element) {
+    return this._shapeMap[element.type](element);
+  }
+
 }
 
 export default App;

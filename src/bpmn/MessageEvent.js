@@ -20,13 +20,13 @@ export default class MessageEvent extends Bpmn {
 	render() {
 
  		var path = this.getScaledPath(this.state.rawPath, {
-			xScaleFactor: 0.9,
-			yScaleFactor: 0.9,
+			xScaleFactor: 1,
+			yScaleFactor: 1,
 			containerWidth: this.props.width,
 			containerHeight: this.props.height,
 			position: {
-			  mx: 0.235,
-			  my: 0.315
+			  	mx: 0.235,
+          		my: 0.315
 			}
 		});
 
@@ -37,7 +37,8 @@ export default class MessageEvent extends Bpmn {
 
 		return(
 			<Event fill={fill} stroke={stroke} {...this.props} >
-				<Bpmn fill={fill} stroke={stroke} path={path} strokeWidth={strokeWidth} {...this.props} />
+				{/*<Bpmn fill={fill} stroke={stroke} path={path} strokeWidth={strokeWidth} {...this.props} />*/}
+				<path d={path} stroke={stroke} path={path} strokeWidth={strokeWidth} />
 			</Event>
 		);
 	}
