@@ -59,14 +59,16 @@ import CompensationMarker from './../bpmn/CompensationMarker';
 import LoopMarker from './../bpmn/LoopMarker';
 import AdhocMarker from './../bpmn/AdhocMarker';
 
-
 import { Resizable, ResizableBox } from 'react-resizable';
 
 export default class Viewport extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {width: this.props.width, height: this.props.height};
+		this.state = {
+			width: this.props.width, 
+			height: this.props.height
+		};
 
 		this.onResize = this.onResize.bind(this);
 	}

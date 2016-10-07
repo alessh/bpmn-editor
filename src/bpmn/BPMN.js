@@ -256,14 +256,15 @@ export default class BPMN extends Component {
 
 		return (
 			
-			<Draggable {...dragHandlers} >
+			<Draggable 
+        {...dragHandlers} 
+        defaultPosition={{x: this.props.x, y: this.props.y}} 
+        >
 			    <g 
 			    	stroke={this.props.stroke || '#000000'} 
 			    	fill={this.props.fill || '#ffffff'} 
-	                cx={this.props.x} 
-			        cy={this.props.y}
 			    >
-			        <path d={this.props.path} style={{strokeWidth: this.props.strokeWidth || 1}} />
+            <path d={this.props.path} style={{strokeWidth: this.props.strokeWidth || 1}} />
 			    </g>
 			</Draggable>
 

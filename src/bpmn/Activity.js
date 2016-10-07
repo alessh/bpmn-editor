@@ -88,12 +88,10 @@ export default class Activity extends Bpmn {
 
 		return(
 
-			<Draggable {...dragHandlers} >
+			<Draggable {...dragHandlers} defaultPosition={{x: this.props.x, y: this.props.y}} >
 			    <g 
-			    	stroke='#000000' 
-			    	fill='#ffffff'
-			    	x={this.props.x}
-			    	y={this.props.y}
+			    	stroke={this.props.stroke || '#000000'} 
+			    	fill={this.props.fill || '#ffffff'}
 			    >
 
 			        <rect 

@@ -29,6 +29,7 @@ import ComplexGateway from './bpmn/ComplexGateway';
 import ParallelGateway from './bpmn/ParallelGateway';
 import EventBasedGateway from './bpmn/EventBasedGateway';
 
+import Activity from './bpmn/Activity';
 import Task from './bpmn/Task';
 import ServiceTask from './bpmn/ServiceTask';
 import UserTask from './bpmn/UserTask';
@@ -38,7 +39,7 @@ import ReceiveTask from './bpmn/ReceiveTask';
 import ScriptTask from './bpmn/ScriptTask';
 import BusinessRuleTask from './bpmn/BusinessRuleTask';
 
-import Activity from './bpmn/Activity';
+import Process from './bpmn/Process';
 import SubProcess from './bpmn/SubProcess';
 import AdHocSubProcess from './bpmn/AdHocSubProcess';
 import Transaction from './bpmn/Transaction';
@@ -62,7 +63,31 @@ import Viewport from './svg/Viewport';
 
 import flow from './flow.json';
 
+import uuid from 'node-uuid';
+
 class App extends Component {
+
+  shapeMap = {
+    'bpmn:process': function (props) {
+      return <Process {...props} key={props.key || uuid.v4()} />;
+    },
+
+    'bpmn:startEvent': function (props) {
+      return <StartEvent {...props} key={props.key || uuid.v4()} />;
+    },
+
+    'bpmn:task': function (props) {
+      return <Task {...props} key={props.key || uuid.v4()} />;
+    },
+
+    'bpmn:endEvent': function (props) {
+      return <EndEvent {...props} key={props.key || uuid.v4()} />;
+    }
+  }
+
+  createElements(element) {
+    return this.shapeMap[element.type](element);
+  }
 
   render() {
 
@@ -77,18 +102,15 @@ class App extends Component {
     const width = 1024;
     const height = 768;
 
-    var self = this;
-
-    var Viewport = <Viewport width={'90%'} height={800} >
-     {
-      //let _this = this;
-      flow.map(function(s) {
-        return self.createElements(s);
-      })
-    }
-    </Viewport>
-
-    return ( Viewport );
+    return ( 
+      <Viewport width={'90%'} height={800} >
+        {
+          flow.map( (e) =>
+            this.createElements(e)
+          )
+        }.bind(this)
+      </Viewport> 
+    );
     
     /*return (
       <div className="App">
@@ -101,9 +123,8 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        {/*<Viewport width={'90%'} height={800} >*/}
+        <Viewport width={'90%'} height={800} >
           
-          {/*
           <Event width={36} height={36} x={250} y={250} text="Início" />  
           <StartEvent width={36} height={36} x={390} y={350} text="Início" />
           <MessageEvent width={36} height={36} x={290} y={350} text="Email" />
@@ -113,13 +134,11 @@ class App extends Component {
           <ScriptTask width={100} height={80} />
           <SendTask width={100} height={80} />
           <ReceiveTask width={100} height={80} />
-          */}
+          
 
           {Viewport}
 
-        {/*</Viewport>*/}
-
-        {/*
+        </Viewport>
 
         <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} >
           <Event width={30} height={30} />
@@ -284,34 +303,10 @@ class App extends Component {
           <AdhocMarker width={30} height={30} />
         </svg>  
         
-        */}
-
 
 
       /*</div>
     );*/
-  }
-
-  _shapeMap = {
-    'bpmn:process': function (props) {
-      return <StartEvent {...props} />;
-    },
-
-    'bpmn:startEvent': function (props) {
-      return <StartEvent {...props} />;
-    },
-
-    'bpmn:task': function (props) {
-      return <Task {...props} />;
-    },
-
-    'bpmn:endEvent': function (props) {
-      return <EndEvent {...props} />;
-    }
-  }
-
-  createElements(element) {
-    return this._shapeMap[element.type](element);
   }
 
 }
