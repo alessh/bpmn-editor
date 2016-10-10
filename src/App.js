@@ -39,6 +39,9 @@ import ReceiveTask from './bpmn/ReceiveTask';
 import ScriptTask from './bpmn/ScriptTask';
 import BusinessRuleTask from './bpmn/BusinessRuleTask';
 
+import Flow from './bpmn/Flow';
+import SequenceFlow from './bpmn/SequenceFlow';
+
 import Process from './bpmn/Process';
 import SubProcess from './bpmn/SubProcess';
 import AdHocSubProcess from './bpmn/AdHocSubProcess';
@@ -61,7 +64,7 @@ import AdhocMarker from './bpmn/AdhocMarker';
 
 import Viewport from './svg/Viewport';
 
-import flow from './flow.json';
+import myProcess from './diagram.json';
 
 import uuid from 'node-uuid';
 
@@ -78,6 +81,10 @@ class App extends Component {
 
     'bpmn:task': function (props) {
       return <Task {...props} key={props.key || uuid.v4()} />;
+    },
+
+    'bpmn:sequenceFlow': function (props) {
+      return <SequenceFlow {...props} key={props.key || uuid.v4()} />;
     },
 
     'bpmn:endEvent': function (props) {
@@ -105,7 +112,7 @@ class App extends Component {
     return ( 
       <Viewport width={'90%'} height={800} >
         {
-          flow.map( (e) =>
+          myProcess.map( (e) =>
             this.createElements(e)
           )
         }.bind(this)
